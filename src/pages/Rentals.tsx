@@ -15,7 +15,7 @@ const Rental = () => {
   const [data, setData] = useState<any[]>([]);
 
   axios
-    .get("http://localhost:3000/data")
+    .get("https://api-rent-app-psi.vercel.app/data")
     .then((response) => {
       setData(response.data);
     })

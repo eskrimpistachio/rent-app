@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 const FullSummary = () => {
   const [data, setData] = useState<any[]>([]);
   axios
-    .get("http://localhost:3000/data")
+    .get("https://api-rent-app-psi.vercel.app/data")
     .then((response) => {
       setData(response.data);
     })

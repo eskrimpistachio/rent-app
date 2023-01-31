@@ -63,7 +63,7 @@ const Form = () => {
         totalRent,
         
       }];
-      const res = await axios.post("http://localhost:3000/submit", formdata);
+      const res = await axios.post("https://api-rent-app-psi.vercel.app/submit", formdata);
       console.log(res);
       navigate('/bookings2')
     } catch (err) {

@@ -20,7 +20,7 @@ const Bookings2 = () => {
   const navigate = useNavigate();
 
   axios
-    .get("http://localhost:3000/data")
+    .get("https://api-rent-app-psi.vercel.app/data")
     .then((response) => {
       setData(response.data);
       setTotalRent(response.data.totalRent);
