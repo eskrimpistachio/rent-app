@@ -1,11 +1,12 @@
-import Button from "../../components/Button/Button";
-import Navbar from "../../components/Navbar/Navbar";
-import gstore from "../../assets/gstore.png";
-import mouse from "../../assets/mouse.png";
-import AboutUs from "../../components/Pages Component/AboutUs";
-import WhyChoose from "../../components/Pages Component/WhyChoose";
-import CustomerReview from "../../components/Pages Component/CustomerReview";
-import Footer from "../../components/Pages Component/Footer";
+import Button from '../../components/Button/Button';
+import Navbar from '../../components/Navbar/Navbar';
+import gstore from '../../assets/gstore.png';
+import mouse from '../../assets/mouse.png';
+import AboutUs from '../../components/Pages Component/AboutUs';
+import WhyChoose from '../../components/Pages Component/WhyChoose';
+import CustomerReview from '../../components/Pages Component/CustomerReview';
+import Footer from '../../components/Pages Component/Footer';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
@@ -45,7 +46,9 @@ const Home = () => {
               </div>
             </div>
             <div className="lg:mr-36">
-              <Button direct="/bookings">Rent Cars</Button>
+              <Link to="/bookings">
+                <Button>Rent Cars</Button>
+              </Link>
             </div>
             {/* Scroll down animate */}
             <div className="hidden lg:flex h-1/2 animate-bounce lg:mt-2">
@@ -56,9 +59,9 @@ const Home = () => {
       </div>
       <div className="bg-dark">
         <AboutUs />
-        <WhyChoose/>
-        <CustomerReview/>
-        <Footer/>
+        <WhyChoose />
+        <CustomerReview />
+        <Footer />
       </div>
     </>
   );

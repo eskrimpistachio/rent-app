@@ -14,13 +14,25 @@ import gr86 from "../../assets/gr86.png";
 import mazda3 from "../../assets/mazda3.png";
 
 const Bookings2 = () => {
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<T[]>([]);
   const [totalRent, setTotalRent] = useState(0);
   const [selectedCars, setSelectedCars] = useState("");
   const navigate = useNavigate();
+  
+  interface T {
+    serviceType?: any;
+    pickupLocation?: string;
+    dropOff?: string;
+    pickUpDate?: string;
+    hours?: number;
+    days?: number;
+    weekly?: number;
+    totalRent?: any;
+    selectedCars? : string,
+  }
 
   axios
-    .get("https://api-rent-app-psi.vercel.app/data")
+    .get("http://localhost:3000/data")
     .then((response) => {
       setData(response.data);
       setTotalRent(response.data.totalRent);
@@ -32,9 +44,9 @@ const Bookings2 = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const newData = [{ ...data[0], totalRent, selectedCars }];
+      const newData:any = { data, totalRent, selectedCars };
       setData(newData);
-      const res = await axios.post("http://localhost:3000/submit", newData);
+      const res = await axios.post("http://localhost:3000/data/submit", newData);
       console.log(res);
     } catch (err) {
       console.log(err);

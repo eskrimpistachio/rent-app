@@ -51,7 +51,7 @@ const Form = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const formdata = [{
+      const formdata = {
         namaPembeli,
         pickupLocation,
         serviceType,
@@ -62,8 +62,8 @@ const Form = () => {
         weekly,
         totalRent,
         
-      }];
-      const res = await axios.post("https://api-rent-app-psi.vercel.app/submit", formdata);
+      };
+      const res = await axios.post("http://localhost:3000/data/submit", formdata);
       console.log(res);
       navigate('/bookings2')
     } catch (err) {
