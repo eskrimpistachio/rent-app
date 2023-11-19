@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
-    font-family : 'Montserrat'
+* {
+  font-family: 'Montserrat';
+}
+
+.dropdown::-webkit-scrollbar {
+  background: white;
+  width: 10px;
+}
+
+.dropdown::-webkit-scrollbar-thumb {
+  background: #fb2576;
+}
+
+html::-webkit-scrollbar {
+  background: white;
+  width: 10px;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #fb2576;
+  border-radius: 0.75rem;
 }

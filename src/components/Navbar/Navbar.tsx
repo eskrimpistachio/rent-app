@@ -18,13 +18,13 @@ const Navbar = () => {
           <ul
             className={`hidden lg:flex lg:flex-row text-sm 2xl:text-base justify-evenly gap-16 lg:gap-32 z-[-1] font-semibold`}
           >
-            <li>
+            <li className="hover:scale-110">
               <Link to="/">Home</Link>
             </li>
-            <li>
+            <li className="hover:scale-110">
               <Link to="/bookings">Bookings</Link>
             </li>
-            <li>
+            <li className="hover:scale-110">
               <Link to="/rentals">Your Rentals</Link>
             </li>
           </ul>
