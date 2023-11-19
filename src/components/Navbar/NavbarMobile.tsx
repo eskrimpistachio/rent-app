@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const NavbarMobile = ({ open }: any) => {
   return (
     <div>
@@ -7,9 +9,15 @@ const NavbarMobile = ({ open }: any) => {
             <ul
               className={`lg:hidden flex flex-col text-2xl justify-evenly gap-8 z-[-1]`}
             >
-              <li>Home</li>
-              <li>Service</li>
-              <li>Bookings</li>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/bookings">Bookings</Link>
+              </li>
+              <li>
+                <Link to="/rentals">Your Rentals</Link>
+              </li>
             </ul>
           </div>
           {/* Account and Logout Info */}

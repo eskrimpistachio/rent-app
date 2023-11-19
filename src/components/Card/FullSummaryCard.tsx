@@ -7,9 +7,11 @@ import gr86 from '../../assets/gr86.png';
 import mazda3 from '../../assets/mazda3.png';
 import Popup from '../Popup/Popup';
 import { Link } from 'react-router-dom';
+import Skeleton from '../Skeleton/Skeleton';
 
 const FullSummary = () => {
   const [data, setData] = useState<T>({});
+  const [isLoading, setIsLoading] = useState(true);
 
   interface T {
     serviceType?: any;
@@ -20,7 +22,7 @@ const FullSummary = () => {
     days?: number;
     weekly?: number;
     totalRent?: any;
-    selectedCars? : string,
+    selectedCars?: string;
   }
 
   useEffect(() => {
@@ -28,6 +30,7 @@ const FullSummary = () => {
       .get('http://localhost:3000/data')
       .then((response) => {
         setData(response.data);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error(error);
@@ -35,51 +38,54 @@ const FullSummary = () => {
   }, [data]);
 
   return (
-    <div>
-      <div className="bg-[#252525] px-16 py-8 rounded-lg flex flex-col gap-8">
-        <h1 className="font-semibold text-2xl text-center">Summary</h1>
-        {
-          <>
-            <div className="flex flex-col justify-evenly gap-2">
-              <h6 className="font-light text-sm">Service Type</h6>
-              <h4 className="font-semibold">{data.serviceType}</h4>
-              <h6 className="font-light text-sm">Pickup Location</h6>
-              <h4 className="font-semibold">{data.pickupLocation}</h4>
-              <h6 className="font-light text-sm">Drop Off Location</h6>
-              <h4 className="font-semibold">{data.dropOff}</h4>
-              <h6 className="font-light text-sm">Pickup Date</h6>
-              <h4 className="font-semibold">{data.pickUpDate}</h4>
-              <h6 className="font-light text-sm">Total Time</h6>
-              {selectionTimes(data)}
-            </div>
-
-            <div className="flex flex-col text-center">
-              <h6 className="font-light text-sm">Car Choices</h6>
-              {selectionCars(data)}
-              <h4 className="font-semibold">{data.selectedCars}</h4>
-            </div>
-            <div className="flex flex-col gap-2">
-              <h6 className="font-semibold">Detail Payment :</h6>
-              <h4>Selected Cars : {data.selectedCars}</h4>
-              <div className="flex flex-row gap-2">
-                <h4>Total Time : </h4>
+    <>
+      {isLoading ? (
+        <Skeleton />
+      ) : (
+        <div className="bg-[#252525] px-16 py-8 rounded-lg flex flex-col gap-8">
+          <h1 className="font-semibold text-2xl text-center">Summary</h1>
+          {
+            <>
+              <div className="flex flex-col justify-evenly gap-2">
+                <h6 className="font-light text-sm">Service Type</h6>
+                <h4 className="font-semibold">{data.serviceType}</h4>
+                <h6 className="font-light text-sm">Pickup Location</h6>
+                <h4 className="font-semibold">{data.pickupLocation}</h4>
+                <h6 className="font-light text-sm">Drop Off Location</h6>
+                <h4 className="font-semibold">{data.dropOff}</h4>
+                <h6 className="font-light text-sm">Pickup Date</h6>
+                <h4 className="font-semibold">{data.pickUpDate}</h4>
+                <h6 className="font-light text-sm">Total Time</h6>
                 {selectionTimes(data)}
               </div>
-              <hr />
-            </div>
-            <h1 className="font-bold text-2xl text-center">
-              Total :{' '}
-              {rentTotalCount(data.serviceType, data.totalRent, data)}
-            </h1>
-            <Link to="/rentals">
-              <button className="bg-secondary text-center text-white rounded-xl text-lg px-12 py-3 2xl:px-16 2xl:py-4 2xl:text-xl font-bold">
-                Rent
-              </button>
-            </Link>
-          </>
-        }
-      </div>
-    </div>
+
+              <div className="flex flex-col text-center">
+                <h6 className="font-light text-sm">Car Choices</h6>
+                {selectionCars(data)}
+                <h4 className="font-semibold">{data.selectedCars}</h4>
+              </div>
+              <div className="flex flex-col gap-2">
+                <h6 className="font-semibold">Detail Payment :</h6>
+                <h4>Selected Cars : {data.selectedCars}</h4>
+                <div className="flex flex-row gap-2">
+                  <h4>Total Time : </h4>
+                  {selectionTimes(data)}
+                </div>
+                <hr />
+              </div>
+              <h1 className="font-bold text-2xl text-center">
+                Total : {rentTotalCount(data.serviceType, data.totalRent, data)}
+              </h1>
+              <Link to="/rentals">
+                <button className="bg-secondary text-center text-white rounded-xl text-lg px-12 py-3 2xl:px-16 2xl:py-4 2xl:text-xl font-bold">
+                  Rent
+                </button>
+              </Link>
+            </>
+          }
+        </div>
+      )}
+    </>
   );
 };
 
