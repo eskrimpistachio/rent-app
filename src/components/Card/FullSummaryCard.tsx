@@ -76,11 +76,13 @@ const FullSummary = () => {
               <h1 className="font-bold text-2xl text-center">
                 Total : {rentTotalCount(data.serviceType, data.totalRent, data)}
               </h1>
-              <Link to="/rentals">
-                <button className="bg-secondary text-center text-white rounded-xl text-lg px-12 py-3 2xl:px-16 2xl:py-4 2xl:text-xl font-bold">
-                  Rent
-                </button>
-              </Link>
+              <div className='mx-auto'>
+                <Link to="/rentals">
+                  <button className="bg-secondary text-center text-white rounded-xl text-lg px-12 py-3 2xl:px-16 2xl:py-4 2xl:text-xl font-bold hover:scale-110">
+                    Rent
+                  </button>
+                </Link>
+              </div>
             </>
           }
         </div>

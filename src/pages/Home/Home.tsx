@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   return (
     <>
-      <div className="bg-landing-bg bg-cover h-[100vh] text-white font-mont">
+      <div className="bg-landing-bg bg-cover h-[110vh] text-white font-mont">
         <Navbar />
         <div className="flex flex-col mx-16 md:my-8">
           <div className="flex flex-col justify-evenly gap-8">

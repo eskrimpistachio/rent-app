@@ -1,23 +1,33 @@
-import axios from "axios";
-import { useState } from "react";
-import Container from "../components/Container";
-import Navbar from "../components/Navbar/Navbar";
-import s63 from "../assets/s63.png";
-import q3 from "../assets/q3.png";
-import series2 from "../assets/series2.png";
-import gr86 from "../assets/gr86.png";
-import mazda3 from "../assets/mazda3.png";
-import success from "../assets/success.png";
-import Footer from "../components/Pages Component/Footer";
-import Button from "../components/Button/Button";
+import axios from 'axios';
+import { useState } from 'react';
+import Container from '../components/Container';
+import Navbar from '../components/Navbar/Navbar';
+import s63 from '../assets/s63.png';
+import q3 from '../assets/q3.png';
+import series2 from '../assets/series2.png';
+import gr86 from '../assets/gr86.png';
+import mazda3 from '../assets/mazda3.png';
+import success from '../assets/success.png';
+import Footer from '../components/Pages Component/Footer';
+import Button from '../components/Button/Button';
+import Skeleton from '../components/Skeleton/Skeleton';
+import { Link } from 'react-router-dom';
 
 const Rental = () => {
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<T>({});
+  const [isLoading, setIsLoading] = useState(true);
+  interface T {
+    length?: number;
+    namaPembeli?: string;
+    selectedCars?: string;
+    serviceType?: string;
+  }
 
   axios
-    .get("http://localhost:3000/data")
+    .get('http://localhost:3000/data')
     .then((response) => {
       setData(response.data);
+      setIsLoading(false);
     })
     .catch((error) => {
       console.error(error);
@@ -39,31 +49,37 @@ const Rental = () => {
               Belum ada pesanan yang diterima
             </h1>
           </div>
+        ) : isLoading ? (
+          <div className="my-16">
+            <Skeleton />
+          </div>
         ) : (
           <div className="rounded-2xl bg-[#252525] flex flex-row justify-around my-8 py-4 h-[200px] gap">
-            {data.map((d) => (
-              <div className="flex flex-row justify-between gap-4">
-                {selectionCars(d)}
-                <div className="flex flex-col justify-evenly">
-                  <h1 className="font-semibold">
-                    Nama Pemesan : {d.namaPembeli}
-                  </h1>
-                  <h1 className="font-semibold">Car Type : {d.selectedCars}</h1>
-                  <h1 className="font-semibold">
-                    Service Type : {d.serviceType}
-                  </h1>
-                  <div className="flex flex-row gap-2 font-semibold">
-                    <h1>Time Rent : </h1>
-                    {selectionTimes(d)}
-                  </div>
+            <div className="flex flex-row justify-between gap-4">
+              {selectionCars(data)}
+              <div className="flex flex-col justify-evenly">
+                <h1 className="font-semibold">
+                  Nama Pemesan : {data.namaPembeli}
+                </h1>
+                <h1 className="font-semibold">
+                  Car Type : {data.selectedCars}
+                </h1>
+                <h1 className="font-semibold">
+                  Service Type : {data.serviceType}
+                </h1>
+                <div className="flex flex-row gap-2 font-semibold">
+                  <h1>Time Rent : </h1>
+                  {selectionTimes(data)}
                 </div>
               </div>
-            ))}
+            </div>
             <img className="my-auto" src={success} alt="missing img" />
           </div>
         )}
         <div className="flex justify-center">
-          <Button direct="/">Back to Home</Button>
+          <Link to = "/">
+            <Button>Back to Home</Button>
+          </Link>
         </div>
       </Container>
       <Footer />
@@ -75,19 +91,19 @@ export default Rental;
 
 function selectionCars(d: any) {
   switch (d.selectedCars) {
-    case "Mercedes-Benz S63 AMG":
+    case 'Mercedes-Benz S63 AMG':
       return <img src={s63} alt="missing cars" />;
       break;
-    case "Audi Q3":
+    case 'Audi Q3':
       return <img src={q3} alt="missing cars" />;
       break;
-    case "BMW 2 Series Coupe":
+    case 'BMW 2 Series Coupe':
       return <img src={series2} alt="missing cars" />;
       break;
-    case "Toyota GR 86":
+    case 'Toyota GR 86':
       return <img src={gr86} alt="missing cars" />;
       break;
-    case "Mazda 3 Hatchback":
+    case 'Mazda 3 Hatchback':
       return <img src={mazda3} alt="missing cars" />;
       break;
   }
@@ -95,13 +111,13 @@ function selectionCars(d: any) {
 
 function selectionTimes(d: any) {
   switch (d.serviceType) {
-    case "Hourly":
+    case 'Hourly':
       return <h4 className="font-semibold">{d.hours} Hours</h4>;
       break;
-    case "Daily":
+    case 'Daily':
       return <h4 className="font-semibold">{d.daily} Days</h4>;
       break;
-    case "Weekly":
+    case 'Weekly':
       return <h4 className="font-semibold">{d.weekly} Weeks</h4>;
       break;
   }
