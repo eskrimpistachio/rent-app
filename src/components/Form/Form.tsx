@@ -32,7 +32,7 @@ const Form = () => {
         totalRent,
       };
       const res = await axios.post(
-        'http://localhost:3000/data/submit',
+        'https://api-rent-app-beta.vercel.app/data/submit',
         formdata
       );
       console.log(res);
@@ -121,7 +121,7 @@ const Form = () => {
           </div>
           {serviceType === 'Hourly' && (
             <div className="flex flex-col gap-3">
-              <label htmlFor="hours">Choose How Many Hours</label>
+              <label htmlFor="hours">Choose How Many Rent Hours</label>
               <select
                 id="hours"
                 name="hours"
@@ -136,7 +136,7 @@ const Form = () => {
           )}
           {serviceType === 'Daily' && (
             <div className="flex flex-col gap-3">
-              <label htmlFor="days">Choose How Many Days</label>
+              <label htmlFor="days">Choose How Many Rent Days</label>
               <select
                 id="days"
                 name="days"
@@ -154,7 +154,7 @@ const Form = () => {
           )}
           {serviceType === 'Weekly' && (
             <div className="flex flex-col gap-3">
-              <label htmlFor="weeks">Choose How Many Weeks</label>
+              <label htmlFor="weeks">Choose How Many Rent Weeks</label>
               <select
                 id="weeks"
                 name="weeks"

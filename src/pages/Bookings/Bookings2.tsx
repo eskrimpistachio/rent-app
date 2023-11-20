@@ -32,7 +32,7 @@ const Bookings2 = () => {
   }
 
   axios
-    .get("http://localhost:3000/data")
+    .get("https://api-rent-app-beta.vercel.app/data")
     .then((response) => {
       setData(response.data);
       setTotalRent(response.data.totalRent);
@@ -46,7 +46,7 @@ const Bookings2 = () => {
     try {
       const newData:any = { data, totalRent, selectedCars };
       setData(newData);
-      const res = await axios.post("http://localhost:3000/data/submit", newData);
+      const res = await axios.post("https://api-rent-app-beta.vercel.app/data/submit", newData);
       console.log(res);
     } catch (err) {
       console.log(err);

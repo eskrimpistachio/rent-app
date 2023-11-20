@@ -17,7 +17,7 @@ const SummaryCard = () => {
   }
   useEffect(() => {
     axios
-      .get('http://localhost:3000/data')
+      .get('https://api-rent-app-beta.vercel.app/data')
       .then((response) => {
         setData(response.data);
         setIsLoading(false);
