@@ -37,6 +37,8 @@ const FullSummary = () => {
       });
   }, [data]);
 
+  console.log(data);
+
   return (
     <>
       {isLoading ? (
@@ -119,7 +121,7 @@ function selectionTimes(d: any) {
       return <h4 className="font-semibold">{d.hours} Hours</h4>;
       break;
     case 'Daily':
-      return <h4 className="font-semibold">{d.daily} Days</h4>;
+      return <h4 className="font-semibold">{d.days} Days</h4>;
       break;
     case 'Weekly':
       return <h4 className="font-semibold">{d.weekly} Weeks</h4>;
@@ -134,7 +136,7 @@ function rentTotalCount(type: string, price: number, data: any) {
       time = data.hours;
       break;
     case 'Daily':
-      time = data.daily;
+      time = data.days;
       break;
     case 'Weekly':
       time = data.weekly;
